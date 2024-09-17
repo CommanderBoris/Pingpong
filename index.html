@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/Bot.js"></script>
+    <script src="script/Bolinha.js"></script>
+    <script src="script/Cpu.js"></script>
+    <script src="script/Placar.js"></script>
+    <script src="script/VerifyWinner.js"></script>
+    
+</head>
+<header>
+    <img src="assests/Ooarai.jpeg" alt="Schale" width="120" height="120">
+</header>
+<body>
+ 
+    <p>AGUA</p>
+    <div class="gradedojogo">
+    <canvas></canvas>
+    </div>
+    <button onclick="bolinha.iniciar()">Play</button>
+    <script type="text/javascript">
+
+        canvas = document.querySelector("canvas");
+        canvas.width = 800;
+        canvas.height = 475; 
+        c = canvas.getContext('2d');
+
+        let pontoJogador1 = 0;
+        let pontoJogador2 = 0;
+        let textWinner = "";
+
+
+        const keyboard={
+            cima: false,
+            baixo: false,
+            esquerda: false,
+            direita: false,
+            pulo: false,
+        };
+
+        const bot = new Bot (c, keyboard);
+        const bolinha = new Bolinha (c, bot);
+        const cpu = new Cpu (c, bolinha);
+        const placar = new Placar (c);
+        const verifywinner = new VerifyWinner (c, placar);
+
+        window.addEventListener('keydown',(event) => 
+        {
+            if(event.keyCode==37){ //esquerda
+                keyboard.esquerda=true;
+            }
+            if(event.keyCode==39){ //direita
+                keyboard.direita=true;
+            }
+            if(event.keyCode==38){ //cima
+                keyboard.cima=true;
+            }
+            if(event.keyCode==40){ //baixo
+                keyboard.baixo=true;
+            }
+            if(event.keyCode==32){ //baixo
+                keyboard.pulo=true;
+            }
+           
+        })
+
+        window.addEventListener('keyup',(event) => 
+        {
+            if(event.keyCode==37){ //esquerda
+                keyboard.esquerda=false;
+            }
+            if(event.keyCode==39){ //direita
+                keyboard.direita=false;
+            }
+            if(event.keyCode==38){ //cima
+                keyboard.cima=false;
+            }
+            if(event.keyCode==40){ //baixo
+                keyboard.baixo=false;
+            }
+            if(event.keyCode==32){ //baixo
+                keyboard.pulo=false;
+            }
+           
+        })
+
+
+        function game(){
+
+            c.clearRect(0,0, canvas.width, canvas.height);
+            bot.draw();
+            bolinha.draw();
+            cpu.draw();
+            placar.draw();
+            verifywinner.draw();
+            requestAnimationFrame(game);
+
+        }
+
+        game();
+            
+
+    </script>
+</body>
+<footer>
+    <span>
+    </span>
+</footer>
+</html>
