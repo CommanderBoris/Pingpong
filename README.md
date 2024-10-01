@@ -16,5 +16,5 @@
 
 # LINK
 
-*Você pode acessar o jogo apertando nessa palavra ao lado* > [Aqui](https://vercel.com/luiz-gustavos-projects-b6d3e629/pingponggame/HUAscPqT8LvYwgfTd76gieFSiV85)
+*Você pode acessar o jogo apertando nessa palavra ao lado* > [Aqui](https://pingponggame-9k2mdxf19-luiz-gustavos-projects-b6d3e629.vercel.app/)
 
